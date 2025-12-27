@@ -15,7 +15,7 @@ import { stopAllRunningProcessors } from "octagonal-wheels/concurrency/processor
 import { AbstractModule } from "../AbstractModule.ts";
 import { EVENT_PLATFORM_UNLOADED } from "../../lib/src/PlatformAPIs/base/APIBase.ts";
 import type { InjectableServiceHub } from "../../lib/src/services/InjectableServices.ts";
-import type { LiveSyncCore } from "../../main.ts";
+import type { LiveSyncCore } from "../../headless/HeadlessTypes";
 
 export class ModuleLiveSyncMain extends AbstractModule {
     async _onLiveSyncReady() {

@@ -19,7 +19,7 @@ import { stripAllPrefixes } from "../../lib/src/string_and_binary/path.ts";
 import { AbstractModule } from "../AbstractModule.ts";
 import { withConcurrency } from "octagonal-wheels/iterable/map";
 import type { InjectableServiceHub } from "../../lib/src/services/InjectableServices.ts";
-import type { LiveSyncCore } from "../../main.ts";
+import type { LiveSyncCore } from "../../headless/HeadlessTypes";
 export class ModuleInitializerFile extends AbstractModule {
     private async _performFullScan(showingNotice?: boolean, ignoreSuspending: boolean = false): Promise<boolean> {
         this._log("Opening the key-value database", LOG_LEVEL_VERBOSE);

@@ -138,7 +138,13 @@ export class ObsidianLiveSyncSettingTab extends PluginSettingTab {
 
     async saveLocalSetting(key: keyof typeof OnDialogSettingsDefault) {
         if (key == "configPassphrase") {
-            localStorage.setItem("ls-setting-passphrase", this.editingSettings?.[key] ?? "");
+            // Never overwrite the stored passphrase with an empty string implicitly.
+            // In headless web UI, transient re-renders can otherwise wipe the saved passphrase and cause
+            // the daemon to re-prompt on every reload.
+            const v = (this.editingSettings?.[key] ?? "").toString();
+            if (v) {
+                localStorage.setItem("ls-setting-passphrase", v);
+            }
             return await Promise.resolve();
         }
         if (key == "deviceAndVaultName") {
@@ -442,10 +448,12 @@ export class ObsidianLiveSyncSettingTab extends PluginSettingTab {
             this.menuEl.querySelectorAll(`.sls-setting-label`).forEach((element) => {
                 if (element.hasClass(`c-${screen}`)) {
                     element.addClass("selected");
-                    element.querySelector<HTMLInputElement>("input[type=radio]")!.checked = true;
+                    const radio = element.querySelector<HTMLInputElement>("input[type=radio]");
+                    if (radio) radio.checked = true;
                 } else {
                     element.removeClass("selected");
-                    element.querySelector<HTMLInputElement>("input[type=radio]")!.checked = false;
+                    const radio = element.querySelector<HTMLInputElement>("input[type=radio]");
+                    if (radio) radio.checked = false;
                 }
             });
         }
@@ -476,11 +484,17 @@ export class ObsidianLiveSyncSettingTab extends PluginSettingTab {
 
     selectPane(event: Event) {
         const target = event.target as HTMLElement;
-        if (target.tagName == "INPUT") {
-            const value = target.getAttribute("value");
-            if (value && this.selectedScreen != value) {
-                this.changeDisplay(value);
-            }
+        // In Obsidian the click target is often the radio input, but in headless web UI
+        // it can be a nested element (icon/label/div). Make this robust.
+        const input =
+            target.tagName === "INPUT"
+                ? (target as HTMLInputElement)
+                : (target.closest?.("label")?.querySelector?.("input[type=radio]") as HTMLInputElement | null) ??
+                  (target.closest?.(".sls-setting-label")?.querySelector?.("input[type=radio]") as HTMLInputElement | null) ??
+                  null;
+        const value = input?.getAttribute("value") ?? null;
+        if (value && this.selectedScreen != value) {
+            this.changeDisplay(value);
         }
     }
 

@@ -1,4 +1,6 @@
-import { type PluginManifest, TFile } from "../deps.ts";
+// This module must be runnable in headless runtime. Do not import `src/deps.ts` here.
+type PluginManifest = any;
+type TFile = any;
 import { type DatabaseEntry, type EntryBody, type FilePath } from "../lib/src/common/types.ts";
 export type { CacheData, FileEventItem } from "../lib/src/common/types.ts";
 

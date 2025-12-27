@@ -3,7 +3,7 @@ import { LiveSyncLocalDB } from "../../lib/src/pouchdb/LiveSyncLocalDB.ts";
 import { initializeStores } from "../../common/stores.ts";
 import { AbstractModule } from "../AbstractModule.ts";
 import { LiveSyncManagers } from "../../lib/src/managers/LiveSyncManagers.ts";
-import type { LiveSyncCore } from "../../main.ts";
+import type { LiveSyncCore } from "../../headless/HeadlessTypes";
 
 export class ModuleLocalDatabaseObsidian extends AbstractModule {
     _everyOnloadStart(): Promise<boolean> {

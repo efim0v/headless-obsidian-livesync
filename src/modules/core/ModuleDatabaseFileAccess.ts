@@ -29,7 +29,7 @@ import {
 import { serialized } from "octagonal-wheels/concurrency/lock";
 import { AbstractModule } from "../AbstractModule.ts";
 import { ICHeader } from "../../common/types.ts";
-import type { LiveSyncCore } from "../../main.ts";
+import type { LiveSyncCore } from "../../headless/HeadlessTypes";
 
 export class ModuleDatabaseFileAccess extends AbstractModule implements DatabaseFileAccess {
     private _everyOnload(): Promise<boolean> {

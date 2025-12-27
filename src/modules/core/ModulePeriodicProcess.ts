@@ -1,5 +1,5 @@
 import { PeriodicProcessor } from "../../common/utils";
-import type { LiveSyncCore } from "../../main";
+import type { LiveSyncCore } from "../../headless/HeadlessTypes";
 import { AbstractModule } from "../AbstractModule";
 
 export class ModulePeriodicProcess extends AbstractModule {

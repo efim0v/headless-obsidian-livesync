@@ -1,6 +1,6 @@
 import { LOG_LEVEL_INFO, LOG_LEVEL_NOTICE, LOG_LEVEL_VERBOSE, Logger } from "octagonal-wheels/common/logger";
 import type { LOG_LEVEL } from "../lib/src/common/types";
-import type { LiveSyncCore } from "../main";
+import type { LiveSyncCore } from "../headless/HeadlessTypes";
 import { __$checkInstanceBinding } from "../lib/src/dev/checks";
 // import { unique } from "octagonal-wheels/collection";
 // import type { IObsidianModule } from "./AbstractObsidianModule.ts";

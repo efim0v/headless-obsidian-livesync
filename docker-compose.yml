@@ -1,0 +1,30 @@
+services:
+  livesync-headless:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      # Path where the vault is mounted inside the container.
+      LIVESYNC_VAULT_DIR: /vault
+      # Optional: override settings file location (see docs/headless.md).
+      # LIVESYNC_SETTINGS_PATH: /vault/.obsidian/plugins/obsidian-livesync/data.json
+      # Web UI Basic Auth
+      LIVESYNC_UI_USER: admin
+      LIVESYNC_UI_PASS: change-me
+      NODE_ENV: production
+      # Ensure consistent Unicode filename handling/display inside container.
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+    ports:
+      - "80:80"
+    volumes:
+      # Sync target (vault) volume:
+      - /Users/artemefimov/Desktop/obsidian-tests/headless-test:/vault
+      # Optional: persist headless local artifacts (logs/local cache) if you add them.
+      - livesync_data:/data
+
+volumes:
+  livesync_data:
+
+

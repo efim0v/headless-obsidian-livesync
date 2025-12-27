@@ -21,7 +21,7 @@ import type { LiveSyncAbstractReplicator } from "../../lib/src/replication/LiveS
 
 import { $msg } from "../../lib/src/common/i18n";
 import { clearHandlers } from "../../lib/src/replication/SyncParamsHandler";
-import type { LiveSyncCore } from "../../main";
+import type { LiveSyncCore } from "../../headless/HeadlessTypes";
 import { ReplicateResultProcessor } from "./ReplicateResultProcessor";
 
 const KEY_REPLICATION_ON_EVENT = "replicationOnEvent";
@@ -52,7 +52,10 @@ export class ModuleReplicator extends AbstractModule {
             }
         });
         eventHub.onEvent(EVENT_SETTING_SAVED, (setting) => {
-            if (this._replicatorType !== setting.remoteType) {
+            // In headless, settings can transition from "encrypted-only" to "decrypted effective"
+            // after the config passphrase is provided, without changing `remoteType`.
+            // If we previously failed to create a replicator (no connection info), retry here.
+            if (this._replicatorType !== setting.remoteType || !this.core.replicator) {
                 void this.setReplicator();
             }
             if (this.core.settings.suspendParseReplicationResult) {

@@ -1,0 +1,889 @@
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/lib/src/UI/DialogHost.esbuild-svelte-fake-css */
+.dialog-host.svelte-3n2ufb {
+  padding: 20px;
+  gap: 0.5em;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--keyboard-height, 0px);
+}
+.dialog-host.svelte-3n2ufb button {
+  margin-left: 10px;
+}
+.dialog-host.svelte-3n2ufb .button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+.dialog-host.svelte-3n2ufb .row {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.dialog-host.svelte-3n2ufb .row > input[type=text],
+.dialog-host.svelte-3n2ufb .row > input[type=password],
+.dialog-host.svelte-3n2ufb .row > textarea,
+.dialog-host.svelte-3n2ufb .row > select {
+  flex: 1;
+  margin-left: 10px;
+  min-width: 10em;
+}
+.dialog-host.svelte-3n2ufb .row > input[type=password] {
+  -webkit-text-security: disc;
+}
+.dialog-host.svelte-3n2ufb .row > input[type=checkbox] {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.dialog-host.svelte-3n2ufb label > span {
+  display: block;
+  width: 8em;
+}
+.dialog-host.svelte-3n2ufb .note,
+.dialog-host.svelte-3n2ufb .note-important,
+.dialog-host.svelte-3n2ufb .note-error {
+  padding: 10px;
+  margin-top: 4px;
+  margin-bottom: 0.5lh;
+  border-left: 4px solid;
+}
+.dialog-host.svelte-3n2ufb .note {
+  background-color: var(--interactive-hover);
+  border-left-color: var(--interactive-accent);
+}
+.dialog-host.svelte-3n2ufb .note-important {
+  background-color: var(--interactive-hover);
+  border-left-color: var(--text-warning);
+}
+.dialog-host.svelte-3n2ufb .note-error {
+  background-color: var(--interactive-hover);
+  border-left-color: var(--text-error);
+}
+.dialog-host.svelte-3n2ufb hr {
+  margin: 0.7lh 0;
+}
+.dialog-host.svelte-3n2ufb details {
+  gap: 0.5em;
+  padding-left: 0.5em;
+  border-left: 2px solid var(--interactive-accent);
+}
+.dialog-host.svelte-3n2ufb summary::marker {
+  display: none;
+  content: "";
+}
+.dialog-host.svelte-3n2ufb summary {
+  border-left: 4px solid var(--interactive-accent);
+  padding-left: 0.5em;
+  cursor: pointer;
+  outline: none;
+}
+.dialog-host.svelte-3n2ufb details > summary::after {
+  content: "\23f7";
+  float: right;
+  margin-right: 0.5em;
+}
+.dialog-host.svelte-3n2ufb details[open] > summary::after {
+  content: "\23f6";
+  float: right;
+  margin-right: 0.5em;
+}
+.dialog-host.svelte-3n2ufb input:invalid,
+.dialog-host.svelte-3n2ufb textarea:invalid {
+  border-color: var(--background-modifier-error);
+}
+.dialog-host.svelte-3n2ufb .sub-section {
+  margin-left: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.dialog-host.svelte-3n2ufb .row > input[type=text]:disabled,
+.dialog-host.svelte-3n2ufb .row > input[type=password]:disabled,
+.dialog-host.svelte-3n2ufb .row > textarea:disabled,
+.dialog-host.svelte-3n2ufb .row > select:disabled {
+  background-color: var(--background-secondary);
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/lib/src/UI/components/DialogHeader.esbuild-svelte-fake-css */
+.dialog-header.svelte-1gf4irx {
+  display: none;
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/lib/src/UI/components/Question.esbuild-svelte-fake-css */
+.question-container.svelte-o7k4lc {
+  border-bottom: 2px solid var(--interactive-accent);
+  margin-bottom: 0.5lh;
+  padding-bottom: 0.5lh;
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/lib/src/UI/components/Option.esbuild-svelte-fake-css */
+.option-container.svelte-1h8m5at {
+  border: 1px solid transparent;
+  border-radius: 0.25lh;
+  padding: 0.5rem;
+}
+.option-container.selected.svelte-1h8m5at {
+  border-color: var(--interactive-accent);
+}
+.choice-row.svelte-1h8m5at {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.choice-row.svelte-1h8m5at span.choice-title:where(.svelte-1h8m5at) {
+  width: auto;
+}
+.choice-row.svelte-1h8m5at input[type=radio]:where(.svelte-1h8m5at) {
+  cursor: pointer;
+}
+.choice-notes.svelte-1h8m5at {
+  margin-left: 2rem;
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.option-container.selected.svelte-1h8m5at .choice-notes:where(.svelte-1h8m5at) {
+  color: var(--text-normal);
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/lib/src/UI/components/Check.esbuild-svelte-fake-css */
+.choice-row.svelte-2n6uv8 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.choice-row.svelte-2n6uv8 span.choice-title:where(.svelte-2n6uv8) {
+  width: auto;
+}
+.choice-row.svelte-2n6uv8 input[type=checkbox]:where(.svelte-2n6uv8) {
+  cursor: pointer;
+}
+.choice-notes.svelte-2n6uv8 {
+  margin-left: 2rem;
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/modules/features/SetupWizard/dialogs/PanelCouchDBCheck.esbuild-svelte-fake-css */
+.check-results.svelte-a38xug {
+  margin-top: 0.75rem;
+}
+.check-result.svelte-a38xug {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: 0rem 0.5rem;
+  border-radius: 0;
+  box-shadow: none;
+  border-left: 0.5em solid var(--interactive-accent);
+  margin-bottom: 0.25lh;
+}
+.check-result.error.svelte-a38xug {
+  border-left: 0.5em solid var(--text-error);
+}
+.check-result.success.svelte-a38xug {
+  border-left: 0.5em solid var(--text-success);
+}
+.check-result.svelte-a38xug .message:where(.svelte-a38xug) {
+  white-space: normal;
+  word-break: break-word;
+  font-size: 0.95rem;
+  color: var(--text-normal);
+}
+.check-result.svelte-a38xug .operations:where(.svelte-a38xug) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+@media (max-width: 520px) {
+  .check-result.svelte-a38xug {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+  .check-result.svelte-a38xug .operations:where(.svelte-a38xug) {
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/modules/features/Log/LogPane.esbuild-svelte-fake-css */
+.svelte-o3lsbg {
+  box-sizing: border-box;
+}
+.logpane.svelte-o3lsbg {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+.log.svelte-o3lsbg {
+  overflow-y: scroll;
+  user-select: text;
+  -webkit-user-select: text;
+  padding-bottom: 2em;
+}
+.log.svelte-o3lsbg > pre:where(.svelte-o3lsbg) {
+  margin: 0;
+}
+.log.svelte-o3lsbg > pre.wrap-right:where(.svelte-o3lsbg) {
+  word-break: break-all;
+  max-width: 100%;
+  width: 100%;
+  white-space: normal;
+}
+.row.svelte-o3lsbg {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.row.svelte-o3lsbg > label:where(.svelte-o3lsbg) {
+  display: flex;
+  align-items: center;
+  min-width: 5em;
+  margin-right: 1em;
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/features/HiddenFileCommon/JsonResolvePane.esbuild-svelte-fake-css */
+.spacer.svelte-1ah3y1j {
+  flex-grow: 1;
+}
+.infos.svelte-1ah3y1j {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0.5em;
+}
+.deleted.svelte-1ah3y1j {
+  text-decoration: line-through;
+}
+.svelte-1ah3y1j {
+  box-sizing: border-box;
+}
+.scroller.svelte-1ah3y1j {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: 60vh;
+  user-select: text;
+  -webkit-user-select: text;
+}
+.json-source.svelte-1ah3y1j {
+  white-space: pre;
+  height: auto;
+  overflow: auto;
+  min-height: var(--font-ui-medium);
+  flex-grow: 1;
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/features/ConfigSync/PluginCombo.esbuild-svelte-fake-css */
+.spacer.svelte-14nm4oc {
+  min-width: 1px;
+  flex-grow: 1;
+}
+button.svelte-14nm4oc {
+  margin: 2px 4px;
+  min-width: 3em;
+  max-width: 4em;
+}
+button.svelte-14nm4oc:disabled {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  visibility: collapse;
+}
+button.svelte-14nm4oc:disabled:hover {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  visibility: collapse;
+}
+span.message.svelte-14nm4oc {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  padding: 0 1em;
+  line-height: var(--line-height-tight);
+}
+.is-mobile .spacer.svelte-14nm4oc {
+  margin-left: auto;
+}
+.chip-wrap.svelte-14nm4oc {
+  display: flex;
+  gap: 2px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.chip.svelte-14nm4oc {
+  display: inline-block;
+  border-radius: 2px;
+  font-size: 0.8em;
+  padding: 0 4px;
+  margin: 0 2px;
+  border-color: var(--tag-border-color);
+  background-color: var(--tag-background);
+  color: var(--tag-color);
+}
+.chip.svelte-14nm4oc:empty {
+  display: none;
+}
+.chip.svelte-14nm4oc:not(:empty)::before {
+  min-width: 1.8em;
+  display: inline-block;
+}
+.chip.content.svelte-14nm4oc:not(:empty)::before {
+  content: "\1f4c4: ";
+}
+.chip.version.svelte-14nm4oc:not(:empty)::before {
+  content: "\1f3f7\fe0f: ";
+}
+.chip.modified.svelte-14nm4oc:not(:empty)::before {
+  content: "\1f4c5: ";
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/features/ConfigSync/PluginPane.esbuild-svelte-fake-css */
+.buttonsWrap.svelte-10jah2g {
+  padding-bottom: 4px;
+}
+h3.svelte-10jah2g {
+  position: sticky;
+  top: 0;
+  background-color: var(--modal-background);
+}
+.labelrow.svelte-10jah2g {
+  margin-left: 0.4em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-top: 1px solid var(--background-modifier-border);
+  padding: 4px;
+  flex-wrap: wrap;
+}
+.filerow.svelte-10jah2g {
+  margin-left: 1.25em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 4px;
+  flex-wrap: wrap;
+}
+.filerow.hideeven.svelte-10jah2g:has(.even),
+.labelrow.hideeven.svelte-10jah2g:has(.even) {
+  display: none;
+}
+.noterow.svelte-10jah2g {
+  min-height: 2em;
+  display: flex;
+}
+button.status.svelte-10jah2g {
+  flex-grow: 0;
+  margin: 2px 4px;
+  min-width: 3em;
+  max-width: 4em;
+}
+.statusnote.svelte-10jah2g {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: var(--size-4-12);
+  align-items: center;
+  min-width: 10em;
+  flex-grow: 1;
+}
+.list.svelte-10jah2g {
+  overflow-y: auto;
+}
+.title.svelte-10jah2g {
+  color: var(--text-normal);
+  font-size: var(--font-ui-medium);
+  line-height: var(--line-height-tight);
+  margin-right: auto;
+}
+.body.svelte-10jah2g {
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.filetitle.svelte-10jah2g {
+  color: var(--text-normal);
+  font-size: var(--font-ui-medium);
+  line-height: var(--line-height-tight);
+  margin-right: auto;
+}
+.buttons.svelte-10jah2g {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.buttons.svelte-10jah2g > button:where(.svelte-10jah2g) {
+  margin-left: 4px;
+  width: auto;
+}
+label.svelte-10jah2g {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+label.svelte-10jah2g > span:where(.svelte-10jah2g) {
+  margin-right: 0.25em;
+}
+.is-mobile .title.svelte-10jah2g,
+.is-mobile .filetitle.svelte-10jah2g {
+  width: 100%;
+}
+.center.svelte-10jah2g {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 3em;
+}
+.maintenancerow.svelte-10jah2g {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.maintenancerow.svelte-10jah2g label:where(.svelte-10jah2g) {
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+}
+.loading.svelte-10jah2g {
+  transition: height 0.25s ease-in-out;
+  transition-delay: 4ms;
+  overflow-y: hidden;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.loading.svelte-10jah2g:empty {
+  height: 0px;
+  transition: height 0.25s ease-in-out;
+  transition-delay: 1s;
+}
+.loading.svelte-10jah2g:not(:empty) {
+  height: 2em;
+  transition: height 0.25s ease-in-out;
+  transition-delay: 0;
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/modules/extras/devUtil/TestPane.esbuild-svelte-fake-css */
+.svelte-fa4ppj {
+  box-sizing: border-box;
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/modules/features/GlobalHistory/GlobalHistory.esbuild-svelte-fake-css */
+.svelte-1ddarry {
+  box-sizing: border-box;
+}
+.globalhistory.svelte-1ddarry {
+  margin-bottom: 2em;
+}
+table.svelte-1ddarry {
+  width: 100%;
+}
+.more.svelte-1ddarry > div:where(.svelte-1ddarry) {
+  display: flex;
+}
+.more.svelte-1ddarry > div:where(.svelte-1ddarry) > button:where(.svelte-1ddarry) {
+  flex-grow: 1;
+}
+th.svelte-1ddarry {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+}
+td.mtime.svelte-1ddarry {
+  white-space: break-spaces;
+}
+td.path.svelte-1ddarry {
+  word-break: break-word;
+}
+.row.svelte-1ddarry {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.row.svelte-1ddarry > label:where(.svelte-1ddarry) {
+  display: flex;
+  align-items: center;
+  min-width: 5em;
+}
+.row.svelte-1ddarry > input:where(.svelte-1ddarry) {
+  flex-grow: 1;
+}
+.filenames.svelte-1ddarry {
+  display: flex;
+  flex-direction: column;
+}
+.filenames.svelte-1ddarry > .path:where(.svelte-1ddarry) {
+  font-size: 70%;
+}
+.rev.svelte-1ddarry {
+  text-overflow: ellipsis;
+  max-width: 3em;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/features/P2PSync/P2PReplicator/PeerStatusRow.esbuild-svelte-fake-css */
+tr.svelte-8nqxsr:nth-child(odd) {
+  background-color: var(--background-primary-alt);
+}
+.info.svelte-8nqxsr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--size-4-1) var(--size-4-1);
+}
+.peer-id.svelte-8nqxsr {
+  font-size: 0.8em;
+}
+.status-chips.svelte-8nqxsr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.buttons.svelte-8nqxsr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.buttons.svelte-8nqxsr .row:where(.svelte-8nqxsr) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.chip.svelte-8nqxsr {
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 4px;
+  border-radius: 4px;
+  font-size: 0.75em;
+  font-weight: bold;
+  background-color: var(--tag-background);
+  border: var(--tag-border-width) solid var(--tag-border-color);
+}
+.chip.connected.svelte-8nqxsr {
+  background-color: var(--background-modifier-success);
+  color: var(--text-normal);
+}
+.chip.connected-live.svelte-8nqxsr {
+  background-color: var(--background-modifier-success);
+  border-color: var(--background-modifier-success);
+  color: var(--text-normal);
+}
+.chip.accepted.svelte-8nqxsr {
+  background-color: var(--background-modifier-success);
+  color: var(--text-normal);
+}
+.chip.waiting.svelte-8nqxsr {
+  background-color: var(--background-secondary);
+}
+.chip.unknown.svelte-8nqxsr {
+  background-color: var(--background-primary);
+  color: var(--text-warning);
+}
+.chip.denied.svelte-8nqxsr {
+  background-color: var(--background-modifier-error);
+  color: var(--text-error);
+}
+.chip.attr.svelte-8nqxsr {
+  background-color: var(--background-secondary);
+}
+.button.svelte-8nqxsr {
+  margin: var(--size-4-1);
+}
+.button.affirmative.svelte-8nqxsr {
+  background-color: var(--interactive-accent);
+  color: var(--text-normal);
+}
+.button.affirmative.svelte-8nqxsr:hover {
+  background-color: var(--interactive-accent-hover);
+}
+.button.negative.svelte-8nqxsr {
+  background-color: var(--background-modifier-error);
+  color: var(--text-error);
+}
+.button.negative.svelte-8nqxsr:hover {
+  background-color: var(--background-modifier-error-hover);
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/features/P2PSync/P2PReplicator/P2PReplicatorPane.esbuild-svelte-fake-css */
+article.svelte-2cmos {
+  max-width: 100%;
+}
+article.svelte-2cmos p:where(.svelte-2cmos) {
+  user-select: text;
+  -webkit-user-select: text;
+}
+h2.svelte-2cmos {
+  margin-top: var(--size-4-1);
+  margin-bottom: var(--size-4-1);
+  padding-bottom: var(--size-4-1);
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+label.is-dirty.svelte-2cmos {
+  background-color: var(--background-modifier-error);
+}
+input.svelte-2cmos {
+  background-color: transparent;
+}
+th.svelte-2cmos {
+  min-height: var(--input-height);
+}
+td.svelte-2cmos {
+  min-height: var(--input-height);
+}
+td.svelte-2cmos > label:where(.svelte-2cmos) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: var(--input-height);
+}
+td.svelte-2cmos > label:where(.svelte-2cmos) > :where(.svelte-2cmos) {
+  margin: auto var(--size-4-1);
+}
+table.peers.svelte-2cmos {
+  width: 100%;
+}
+.important.svelte-2cmos {
+  color: var(--text-error);
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.important-sub.svelte-2cmos {
+  color: var(--text-warning);
+}
+.settings.svelte-2cmos label:where(.svelte-2cmos) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/lib/src/UI/dialogues/DialogueToCopy.esbuild-svelte-fake-css */
+textarea.svelte-u2ix67 {
+  resize: none;
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/lib/src/UI/components/InfoTable.esbuild-svelte-fake-css */
+.info-panel.svelte-xi83q0 {
+  padding: 0.6rem;
+  flex-grow: 1;
+}
+.info-grid.svelte-xi83q0 {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) 1fr;
+  column-count: 2;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  grid-area: "info-key" "info-value";
+}
+.info-entry.svelte-xi83q0 {
+  display: grid;
+  gap: 0.5rem;
+  border-radius: 6px;
+  box-sizing: border-box;
+  min-height: 1.2em;
+}
+.info-key.svelte-xi83q0 {
+  font-weight: 600;
+  align-items: center;
+  border-top: 1px solid var(--background-modifier-hover);
+  border-bottom: 1px solid var(--background-modifier-hover);
+  grid-area: "info-key";
+}
+.info-item.svelte-xi83q0 {
+  align-items: start;
+  padding: 0.5rem;
+  background: var(--background-modifier-hover, rgba(0, 0, 0, 0.03));
+  grid-area: "info-value";
+}
+.value.svelte-xi83q0 {
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--text-normal, #e6e6e6);
+  min-height: 1em;
+}
+@container (max-width: 340px) {
+  .info-grid.svelte-xi83q0 {
+    grid-template-columns: 1fr;
+  }
+  .info-item.svelte-xi83q0 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/modules/features/SettingDialogue/MultipleRegExpControl.esbuild-svelte-fake-css */
+label.svelte-9kxeje {
+  min-width: 4em;
+  width: 4em;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+ul.svelte-9kxeje {
+  flex-grow: 1;
+  display: inline-flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 0;
+}
+li.svelte-9kxeje {
+  padding: var(--size-2-1) var(--size-4-1);
+  display: inline-flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--size-4-2);
+}
+li.svelte-9kxeje input:where(.svelte-9kxeje) {
+  min-width: 10em;
+}
+button.iconbutton.svelte-9kxeje {
+  max-width: 4em;
+}
+.chip.svelte-9kxeje {
+  background-color: var(--tag-background);
+  color: var(--tag-color);
+  padding: var(--size-2-1) var(--size-4-1);
+  border-radius: 0.5em;
+  font-size: 0.8em;
+}
+.chip.svelte-9kxeje:empty {
+  display: none;
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/headless/web/ui/panes/LogsTab.esbuild-svelte-fake-css */
+.headless-logs-tab.svelte-1mstfen {
+  margin-top: 10px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 12px;
+  background: var(--background-secondary);
+  overflow: hidden;
+}
+.headless-logs-toolbar.svelte-1mstfen {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  background: rgba(255, 255, 255, 0.02);
+}
+.headless-logs-status.svelte-1mstfen {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.spacer.svelte-1mstfen {
+  flex: 1;
+}
+.headless-logs-body.svelte-1mstfen {
+  height: min(70vh, 760px);
+  padding: 10px 12px;
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/headless/web/ui/panes/DashboardTab.esbuild-svelte-fake-css */
+.kpis.svelte-64ku4a {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.kpi.svelte-64ku4a {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 12px;
+  background: var(--background-secondary);
+  padding: 12px;
+}
+.kpi-wide.svelte-64ku4a {
+  grid-column: span 2;
+}
+.kpi-label.svelte-64ku4a {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.kpi-value.svelte-64ku4a {
+  font-size: 18px;
+  font-weight: 650;
+}
+.kpi-value-small.svelte-64ku4a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  word-break: break-word;
+}
+.charts.svelte-64ku4a {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.chart-card.svelte-64ku4a {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 12px;
+  background: var(--background-secondary);
+  padding: 10px;
+  overflow: hidden;
+}
+.chart.svelte-64ku4a {
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .kpis.svelte-64ku4a {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kpi-wide.svelte-64ku4a {
+    grid-column: span 2;
+  }
+  .charts.svelte-64ku4a {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* fakecss:/Users/artemefimov/Desktop/obsidian-livesync/src/headless/web/ui/ConfirmHost.esbuild-svelte-fake-css */
+.confirm-modal.svelte-ypsvt3 h2:where(.svelte-ypsvt3) {
+  margin: 0 0 10px;
+}
+.desc.svelte-ypsvt3 {
+  color: var(--text-muted);
+  margin: 0 0 10px;
+  font-size: 13px;
+}
+.actions.svelte-ypsvt3 {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.input.svelte-ypsvt3 {
+  width: 100%;
+  box-sizing: border-box;
+}
+.footer.svelte-ypsvt3 {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.sls-confirm-error.svelte-ypsvt3 {
+  display: none;
+}
+/*# sourceMappingURL=main.css.map */

@@ -3,7 +3,7 @@ import { REMOTE_MINIO, REMOTE_P2P, type RemoteDBSettings } from "../../lib/src/c
 import { LiveSyncCouchDBReplicator } from "../../lib/src/replication/couchdb/LiveSyncReplicator";
 import type { LiveSyncAbstractReplicator } from "../../lib/src/replication/LiveSyncAbstractReplicator";
 import { AbstractModule } from "../AbstractModule";
-import type { LiveSyncCore } from "../../main";
+import type { LiveSyncCore } from "../../headless/HeadlessTypes";
 
 export class ModuleReplicatorCouchDB extends AbstractModule {
     _anyNewReplicator(settingOverride: Partial<RemoteDBSettings> = {}): Promise<LiveSyncAbstractReplicator | false> {
@@ -12,6 +12,10 @@ export class ModuleReplicatorCouchDB extends AbstractModule {
         if (settings.remoteType == REMOTE_MINIO || settings.remoteType == REMOTE_P2P) {
             return Promise.resolve(false);
         }
+        // Headless safety: do not create a replicator until local DB is available.
+        // Otherwise LiveSyncAbstractReplicator.initializeDatabaseForReplication() will crash on db.get().
+        const db = (this.core as any)?.localDatabase?.localDatabase;
+        if (!db) return Promise.resolve(false);
         return Promise.resolve(new LiveSyncCouchDBReplicator(this.core));
     }
     _everyAfterResumeProcess(): Promise<boolean> {

@@ -25,6 +25,8 @@
         "prettyNoWrite": "prettier --config ./.prettierrc.mjs \"**/*.js\" \"**/*.ts\" \"**/*.json\" ",
         "check": "npm run lint && npm run svelte-check",
         "unittest": "deno test -A --no-check --coverage=cov_profile  --v8-flags=--expose-gc  --trace-leaks  ./src/"
+        ,
+        "build:headless-ui": "node esbuild.headless-ui.mjs"
     },
     "keywords": [],
     "author": "vorotamoroz",
@@ -94,9 +96,12 @@
         "fflate": "^0.8.2",
         "idb": "^8.0.3",
         "minimatch": "^10.0.2",
+        "markdown-it": "^14.1.0",
         "octagonal-wheels": "^0.1.44",
+        "pouchdb-adapter-leveldb": "^9.0.0",
         "qrcode-generator": "^1.4.4",
         "trystero": "^0.22.0",
+        "uplot": "^1.6.32",
         "xxhash-wasm-102": "npm:xxhash-wasm@^1.0.2"
     }
 }

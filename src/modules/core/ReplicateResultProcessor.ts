@@ -73,7 +73,8 @@ export class ReplicateResultProcessor {
     public get isSuspended() {
         return (
             this._suspended ||
-            !this.core.services.appLifecycle.isReady ||
+            // NOTE: `isReady` is a function; call it (otherwise it is always truthy).
+            !this.core.services.appLifecycle.isReady() ||
             this.replicator.settings.suspendParseReplicationResult ||
             this.core.services.appLifecycle.isSuspended()
         );
@@ -271,6 +272,7 @@ export class ReplicateResultProcessor {
      * Flag indicating whether the process queue is currently running.
      */
     private _isRunningProcessQueue: boolean = false;
+    private _retryScheduledAt = 0;
 
     /**
      * Process the queued changes.
@@ -278,7 +280,31 @@ export class ReplicateResultProcessor {
     private async runProcessQueue() {
         // Avoid re-entrance, suspend processing, or empty queue loop consumption.
         if (this._isRunningProcessQueue) return;
-        if (this.isSuspended) return;
+        if (this.isSuspended) {
+            // If we got suspended while changes are queued (common in headless during startup / wizard),
+            // schedule a retry so we don't get stuck forever.
+            if (this._queuedChanges.length > 0) {
+                const now = Date.now();
+                if (now - this._retryScheduledAt > 1000) {
+                    this._retryScheduledAt = now;
+                    const ready =
+                        typeof this.core.services.appLifecycle.isReady === "function"
+                            ? this.core.services.appLifecycle.isReady()
+                            : false;
+                    const suspended =
+                        typeof this.core.services.appLifecycle.isSuspended === "function"
+                            ? this.core.services.appLifecycle.isSuspended()
+                            : true;
+                    this.log(
+                        `Deferred processing (suspended). queued=${this._queuedChanges.length} ` +
+                            `ready=${ready} appSuspended=${suspended} suspendParseReplicationResult=${this.replicator.settings.suspendParseReplicationResult}`,
+                        LOG_LEVEL_DEBUG
+                    );
+                    setTimeout(() => this.triggerProcessQueue(), 1000);
+                }
+            }
+            return;
+        }
         if (this._queuedChanges.length == 0) return;
         try {
             this._isRunningProcessQueue = true;

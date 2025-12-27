@@ -37,6 +37,12 @@ This plug-in may be particularly useful for researchers, engineers, and develope
 
 ## How to use
 
+### Headless daemon (CouchDB ↔ vault folder)
+This repo also contains an **experimental headless runtime** (Node.js daemon) that can run outside Obsidian and keep a local vault folder synced via the same LiveSync protocol.
+
+- Documentation: `docs/headless.md`
+- Example env: `example.env.headless`
+
 ### 3-minute setup - CouchDB on fly.io
 
 **Recommended for beginners**

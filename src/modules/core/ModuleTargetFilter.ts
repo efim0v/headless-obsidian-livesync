@@ -20,10 +20,14 @@ import { addPrefix, isAcceptedAll } from "../../lib/src/string_and_binary/path";
 import { AbstractModule } from "../AbstractModule";
 import { EVENT_REQUEST_RELOAD_SETTING_TAB, EVENT_SETTING_SAVED, eventHub } from "../../common/events";
 import { isDirty } from "../../lib/src/common/utils";
-import type { LiveSyncCore } from "../../main";
+import type { LiveSyncCore } from "../../headless/HeadlessTypes";
 export class ModuleTargetFilter extends AbstractModule {
     reloadIgnoreFiles() {
-        this.ignoreFiles = this.settings.ignoreFiles.split(",").map((e) => e.trim());
+        // `ignoreFiles` can be missing/undefined during partial settings loads (e.g. encrypted settings before passphrase).
+        // Default to ".gitignore" (upstream default) and never throw from this hot path.
+        const raw = (this.settings as any)?.ignoreFiles;
+        const s = typeof raw === "string" ? raw : ".gitignore";
+        this.ignoreFiles = s.split(",").map((e) => e.trim()).filter((e) => e.length > 0);
     }
     private _everyOnload(): Promise<boolean> {
         this.reloadIgnoreFiles();

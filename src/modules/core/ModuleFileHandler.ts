@@ -22,7 +22,7 @@ import { getDocDataAsArray, isDocContentSame, readAsBlob, readContent } from "..
 import { shouldBeIgnored } from "../../lib/src/string_and_binary/path";
 import { Semaphore } from "octagonal-wheels/concurrency/semaphore";
 import { eventHub } from "../../common/events.ts";
-import type { LiveSyncCore } from "../../main.ts";
+import type { LiveSyncCore } from "../../headless/HeadlessTypes";
 
 export class ModuleFileHandler extends AbstractModule {
     get db() {
@@ -265,8 +265,20 @@ export class ModuleFileHandler extends AbstractModule {
         if (!this.settings.processSizeMismatchedFiles) {
             // Check the file is not corrupted
             // (Zero is a special case, may be created by some APIs and it might be acceptable).
-            if (docRead.size != 0 && docRead.size !== readAsBlob(docRead).size) {
-                this._log(`File ${path} seems to be corrupted! Writing prevented.`, LOG_LEVEL_NOTICE);
+            const reconstructedSize = readAsBlob(docRead).size;
+            if (docRead.size != 0 && docRead.size !== reconstructedSize) {
+                // High-signal diagnostic: explain *why* we think it's corrupted.
+                // This is essential when debugging cross-client compatibility issues.
+                const children = (docRead as any)?.children;
+                const firstChildren = Array.isArray(children) ? children.slice(0, 8).join(",") : "";
+                this._log(
+                    `File ${path} seems to be corrupted! Writing prevented. ` +
+                        `meta.size=${docRead.size} reconstructed.size=${reconstructedSize} ` +
+                        `type=${(docRead as any)?.type} datatype=${(docRead as any)?.datatype} ` +
+                        `rev=${(docRead as any)?._rev ?? ""} children=${Array.isArray(children) ? children.length : 0} ` +
+                        `firstChildren=${firstChildren}`,
+                    LOG_LEVEL_NOTICE
+                );
                 return false;
             }
         }

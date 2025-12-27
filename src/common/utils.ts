@@ -1,4 +1,86 @@
-import { normalizePath, Platform, TAbstractFile, type RequestUrlParam, requestUrl } from "../deps.ts";
+// IMPORTANT: This module is shared between Obsidian runtime and headless Node runtime.
+// Do NOT import `src/deps.ts` here (it statically depends on Obsidian runtime module).
+type TAbstractFile = { path?: string } & Record<string, any>;
+type RequestUrlParam = {
+    url: string;
+    method?: string;
+    body?: any;
+    headers?: any;
+    contentType?: string;
+};
+
+function normalizePath<T extends string | FilePath>(from: T): T {
+    const input = String(from).replace(/\\/g, "/");
+    const parts = input.split("/").filter((p) => p.length > 0);
+    const out: string[] = [];
+    for (const p of parts) {
+        if (p === ".") continue;
+        if (p === "..") out.pop();
+        else out.push(p);
+    }
+    return out.join("/") as T;
+}
+
+const Platform =
+    typeof process !== "undefined" && (process as any)?.platform
+        ? ({
+              isDesktop: true,
+              isMacOS: (process as any).platform === "darwin",
+              isWin: (process as any).platform === "win32",
+              isLinux: (process as any).platform === "linux",
+              isAndroidApp: false,
+              isIosApp: false,
+          } as any)
+        : ({
+              isDesktop: true,
+              isMacOS: false,
+              isWin: false,
+              isLinux: true,
+              isAndroidApp: false,
+              isIosApp: false,
+          } as any);
+
+async function requestUrlCompat(param: RequestUrlParam) {
+    // Headless Web UI runs in a normal browser, so direct CouchDB calls can be blocked by CORS.
+    // Route requests through the daemon (same-origin) when available.
+    try {
+        if (typeof window !== "undefined" && (globalThis as any).__LIVESYNC_HEADLESS__) {
+            const r = await fetch("/api/request-url", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(param),
+            });
+            const data = await r.json();
+            if (data?.ok && typeof data?.status === "number" && typeof data?.arrayBufferBase64 === "string") {
+                const b64 = data.arrayBufferBase64 as string;
+                const bin = atob(b64);
+                const out = new Uint8Array(bin.length);
+                for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+                return { status: data.status, headers: data.headers ?? {}, arrayBuffer: out.buffer } as any;
+            }
+            // Fallback to local fetch below if proxy returned unexpected shape.
+        }
+    } catch {
+        // ignore
+    }
+    try {
+        const mod = await import("../deps.ts");
+        if ((mod as any)?.requestUrl) {
+            return await (mod as any).requestUrl(param);
+        }
+    } catch {
+        // ignore
+    }
+    const r = await fetch(param.url, {
+        method: param.method,
+        body: param.body,
+        headers: param.headers,
+    });
+    const arrayBuffer = await r.arrayBuffer();
+    const headers: Record<string, string> = {};
+    r.headers.forEach((v, k) => (headers[k] = v));
+    return { status: r.status, headers, arrayBuffer } as any;
+}
 import {
     path2id_base,
     id2path_base,
@@ -24,7 +106,8 @@ import {
     type UXFileInfoStub,
 } from "../lib/src/common/types.ts";
 import { CHeader, ICHeader, ICHeaderLength, ICXHeader, PSCHeader } from "./types.ts";
-import type ObsidianLiveSyncPlugin from "../main.ts";
+// Avoid importing `src/main.ts` in headless runtime.
+type ObsidianLiveSyncPlugin = any;
 import { writeString } from "../lib/src/string_and_binary/convert.ts";
 import { fireAndForget } from "../lib/src/common/utils.ts";
 import { sameChangePairs } from "./stores.ts";
@@ -252,7 +335,7 @@ export const _requestToCouchDB = async (
         contentType: "application/json",
         body: body ? JSON.stringify(body) : undefined,
     };
-    return await requestUrl(requestParam);
+    return await requestUrlCompat(requestParam);
 };
 /**
  * @deprecated Use requestToCouchDBWithCredentials instead.

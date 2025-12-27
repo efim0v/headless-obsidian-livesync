@@ -1,5 +1,5 @@
 import { eventHub } from "../lib/src/hub/hub";
-import type ObsidianLiveSyncPlugin from "../main";
+type ObsidianLiveSyncPlugin = any;
 
 export const EVENT_PLUGIN_LOADED = "plugin-loaded";
 export const EVENT_PLUGIN_UNLOADED = "plugin-unloaded";
