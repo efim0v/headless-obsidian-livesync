@@ -6,7 +6,7 @@ A fork of [Self-hosted LiveSync](https://github.com/vrtmrz/obsidian-livesync) th
 ![use: not ready for daily use](https://img.shields.io/badge/use-not%20ready%20for%20daily%20use-red)
 ![base: LiveSync 0.25.36](https://img.shields.io/badge/base-LiveSync%200.25.36-blue)
 
-![Headless LiveSync dashboard](docs/headless/dashboard.png)
+![Headless LiveSync web UI: remote configuration](docs/headless/settings.png)
 
 | | |
 |---|---|
@@ -34,19 +34,17 @@ The daemon speaks the same protocol as the plug-in — same document format, sam
 
 ## The web UI
 
-The daemon serves a settings and monitoring UI on port 80, behind HTTP Basic Auth. It reuses the plug-in's own settings panes, running in a browser instead of inside Obsidian, and adds two panes of its own.
+The daemon serves a settings and monitoring UI on port 80, behind HTTP Basic Auth. It reuses the plug-in's own settings panes, running in a browser instead of inside Obsidian, and adds two panes of its own: Dashboard and Logs.
 
-**Dashboard** — daemon mode, sync status, queue sizes, the last error, and live charts of replication throughput and queue pressure.
+**Settings** — the LiveSync configuration panes, the same ones the plug-in shows in Obsidian: setup wizard, remote server and encryption, sync mode, selectors, maintenance. Prompts the daemon raises while starting up, such as how to apply a new configuration, appear here as dialogs.
 
-![Dashboard](docs/headless/dashboard.png)
+![Remote configuration](docs/headless/settings.png)
 
 **Logs** — the daemon's log, streamed live, with pause and auto-scroll.
 
 ![Logs](docs/headless/logs.png)
 
-**Settings** — the LiveSync setup and configuration panes, the same ones the plug-in shows in Obsidian. Prompts the daemon raises while starting up, such as how to apply a new configuration, appear here as dialogs.
-
-![Setup](docs/headless/setup.png)
+**Dashboard** — daemon mode, sync status, queue sizes, the last error, and charts of replication throughput and queue pressure. It is not pictured: until file sync works end to end there is no traffic for the charts to draw.
 
 ## What was added to upstream
 
@@ -74,7 +72,7 @@ What that means in practice, as of the last check in October 2026:
 - **With the worker substituted, the daemon starts and the UI works.** It connects to CouchDB, walks through the startup prompts, and reaches the running state. The screenshots above were taken this way.
 - **End-to-end file sync is not verified.** In that same run, storing local files into the database failed. Whether that is the missing worker or a defect in the port has not been established.
 - **The watcher polls** the vault folder instead of using filesystem events.
-- **Dashboard charts render imperfectly**, as the screenshot shows.
+- **Dashboard charts render imperfectly** and, without working file sync, have no data to show.
 - **There are no tests** for the headless code.
 - **Upstream is far ahead.** The fork has not been rebased since 0.25.36.
 
