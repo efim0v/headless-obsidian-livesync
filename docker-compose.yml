@@ -20,7 +20,7 @@ services:
       - "80:80"
     volumes:
       # Sync target (vault) volume:
-      - /Users/artemefimov/Desktop/obsidian-tests/headless-test:/vault
+      - ./my-vault:/vault
       # Optional: persist headless local artifacts (logs/local cache) if you add them.
       - livesync_data:/data
 
